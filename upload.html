@@ -1,0 +1,66 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff9f00">
+<meta name="description" content="ZONGO Connect — find jobs, local services and property for sale across Nigeria.">
+<link rel="stylesheet" href="styles.css">
+<title>ZONGO Connect</title><title>Upload Listing — ZONGO Connect</title></head><body>
+  
+<nav class="site-nav">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <a class="brand" href="index.html">ZONGO</a>
+  
+  <a
+    class="nav-upload-btn"
+    href="upload.html"
+>
+    ＋ Upload
+</a>
+
+  <div class="nav-search"><input id="globalSearch" placeholder="Search jobs, services, property..."><button onclick="runSearch()">🔍</button></div>
+  <a class="nav-link" href="jobs.html">Jobs</a><a class="nav-link" href="services.html">Services</a><a class="nav-link" href="sale.html">For Sale</a>
+  <a class="nav-link account" id="accountLink" href="login.html">👤 Sign in</a>
+</nav>
+<div id="mobileMenu" style="display:none;background:#fff;border-bottom:1px solid #ddd;padding:14px">
+  <a href="jobs.html">Jobs</a> · <a href="services.html">Services</a> · <a href="sale.html">For Sale</a> · <a href="upload.html">Upload Listing</a> · <a href="dashboard.html">Dashboard</a>
+</div>
+<div class="callbar">LIST YOUR JOB • SERVICE • PROPERTY | CONNECT WITH PEOPLE IN YOUR STATE</div><main class="content"><div class="form-card">
+<h1>Upload a Listing</h1>
+<div id="verifyNotice" class="notice">Sign in and verify your email before publishing a listing.</div>
+<form id="uploadForm"><div class="form-grid">
+<div class="field"><label>What are you listing?</label><select id="type" required><option value="">Select</option><option value="jobs">Job / Work Opportunity</option><option value="services">Service</option><option value="sale">Property / Item for Sale</option></select></div>
+<div class="field"><label>Main category</label><select id="category" required></select></div>
+<div class="field"><label>Subcategory</label><select id="subcategory" required></select></div>
+<div class="field"><label>Title</label><input id="title" required placeholder="e.g. Electrician needed in Enugu"></div>
+<div class="field"><label>Price / Salary</label><input id="price" placeholder="e.g. ₦150,000 or Negotiable"></div>
+<div class="field"><label>State</label><select id="state" required></select></div>
+<div class="field"><label>City / Town</label><input id="city" required placeholder="e.g. Enugu"></div>
+<div class="field"><label>Area / Address</label><input id="address" placeholder="Optional exact area"></div>
+<div class="field"><label>Phone number</label><input id="phone" required placeholder="080..."></div>
+<div class="field"><label>Image URL</label><input id="imageUrl" placeholder="Optional: https://..."></div>
+<div class="field full"><label>Description</label><textarea id="description" required placeholder="Describe the job, service or property..."></textarea></div>
+</div><br><button class="primary" type="submit">Publish Listing</button><div id="uploadMsg" style="margin-top:12px"></div></form>
+</div></main><footer><div class="footer-grid">
+  <div><h3>ZONGO</h3><p>State-first marketplace for jobs, services, property and useful items across Nigeria.</p></div>
+  <div><h3>Explore</h3><a href="jobs.html">Jobs</a><a href="services.html">Services</a><a href="sale.html">Property & Items</a><a href="upload.html">Upload Listing</a></div>
+  <div><h3>Account</h3><a href="register.html">Register</a><a href="login.html">Sign in</a><a href="dashboard.html">Dashboard</a></div>
+  <div><h3>Locations</h3><a href="lagos.html">Lagos</a><a href="enugu.html">Enugu</a><a href="rivers.html">Rivers</a><a href="abuja.html">FCT / Abuja</a></div>
+</div><p style="margin-top:30px;color:#888">© 2026 ZONGO. Built for Nigeria.</p></footer><script type="module" src="app.js"></script><script type="module">
+import { CATEGORIES, STATES } from "./categories.js";
+import { db, configured } from "./firebase.js";
+import { watchAuth } from "./auth.js";
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+const type=document.getElementById("type"),cat=document.getElementById("category"),sub=document.getElementById("subcategory"),state=document.getElementById("state");
+STATES.forEach(s=>state.add(new Option(s,s)));
+function fillCats(){cat.innerHTML='<option value="">Select category</option>';Object.keys(CATEGORIES[type.value]||{}).forEach(x=>cat.add(new Option(x,x)));sub.innerHTML='<option value="">Select subcategory</option>'}
+function fillSubs(){sub.innerHTML='<option value="">Select subcategory</option>'; (CATEGORIES[type.value]?.[cat.value]||[]).forEach(x=>sub.add(new Option(x,x)))}
+type.onchange=fillCats;cat.onchange=fillSubs;
+let currentUser=null;watchAuth(u=>{currentUser=u;document.getElementById("verifyNotice").innerHTML=u?(u.emailVerified?'<div class="notice success">✓ Email verified. You can publish.</div>':'<div class="notice">⚠ Your email is not verified. Open the verification email, then sign in again.</div>'):'<div class="notice">Please <a href="login.html"><u>sign in</u></a> first. New users can <a href="register.html"><u>register here</u></a>.</div>'});
+document.getElementById("uploadForm").onsubmit=async e=>{
+ e.preventDefault(); const msg=document.getElementById("uploadMsg");
+ if(!currentUser){msg.className="notice error";msg.textContent="Please sign in first.";return}
+ if(!currentUser.emailVerified){msg.className="notice error";msg.textContent="Please verify your email before publishing.";return}
+ if(!configured){msg.className="notice error";msg.textContent="Firebase is not configured. Add your Firebase config in firebase.js first.";return}
+ const data={type:type.value,category:cat.value,subcategory:sub.value,title:title.value.trim(),price:price.value.trim(),state:state.value,city:city.value.trim(),address:address.value.trim(),phone:phone.value.trim(),imageUrl:imageUrl.value.trim(),description:description.value.trim(),uid:currentUser.uid,email:currentUser.email,status:"active",createdAt:serverTimestamp()};
+ try{const ref=await addDoc(collection(db,"listings"),data);msg.className="notice success";msg.innerHTML=`Published successfully. <a href="listing.html?id=${ref.id}"><u>View listing</u></a>`;e.target.reset();fillCats()}catch(err){msg.className="notice error";msg.textContent=err.message}
+}
+</script></body></html>

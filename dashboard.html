@@ -1,0 +1,45 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff9f00">
+<meta name="description" content="ZONGO Connect — find jobs, local services and property for sale across Nigeria.">
+<link rel="stylesheet" href="styles.css">
+<title>ZONGO Connect</title><title>Dashboard — ZONGO Connect</title></head><body>
+  
+<nav class="site-nav">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <a class="brand" href="index.html">ZONGO</a>
+  
+  <a
+    class="nav-upload-btn"
+    href="upload.html"
+>
+    ＋ Upload
+</a>
+
+  <div class="nav-search"><input id="globalSearch" placeholder="Search jobs, services, property..."><button onclick="runSearch()">🔍</button></div>
+  <a class="nav-link" href="jobs.html">Jobs</a><a class="nav-link" href="services.html">Services</a><a class="nav-link" href="sale.html">For Sale</a>
+  <a class="nav-link account" id="accountLink" href="login.html">👤 Sign in</a>
+</nav>
+<div id="mobileMenu" style="display:none;background:#fff;border-bottom:1px solid #ddd;padding:14px">
+  <a href="jobs.html">Jobs</a> · <a href="services.html">Services</a> · <a href="sale.html">For Sale</a> · <a href="upload.html">Upload Listing</a> · <a href="dashboard.html">Dashboard</a>
+</div>
+<div class="callbar">LIST YOUR JOB • SERVICE • PROPERTY | CONNECT WITH PEOPLE IN YOUR STATE</div><main class="content"><div id="dashboard"><div class="form-card"><h1>User Dashboard</h1><div id="dashMsg">Loading...</div><div class="dashboard-stat"><div class="stat"><b id="count">0</b>My listings</div><div class="stat"><b id="verified">—</b>Email status</div><div class="stat"><b>+</b><a href="upload.html">Create listing</a></div></div><div id="myListings" class="grid"></div></div></div></main><footer><div class="footer-grid">
+  <div><h3>ZONGO</h3><p>State-first marketplace for jobs, services, property and useful items across Nigeria.</p></div>
+  <div><h3>Explore</h3><a href="jobs.html">Jobs</a><a href="services.html">Services</a><a href="sale.html">Property & Items</a><a href="upload.html">Upload Listing</a></div>
+  <div><h3>Account</h3><a href="register.html">Register</a><a href="login.html">Sign in</a><a href="dashboard.html">Dashboard</a></div>
+  <div><h3>Locations</h3><a href="lagos.html">Lagos</a><a href="enugu.html">Enugu</a><a href="rivers.html">Rivers</a><a href="abuja.html">FCT / Abuja</a></div>
+</div><p style="margin-top:30px;color:#888">© 2026 ZONGO. Built for Nigeria.</p></footer><script type="module" src="app.js"></script><script type="module">
+import {db,configured} from "./firebase.js";
+import {watchAuth,logoutUser,resendVerification} from "./auth.js";
+import {collection,query,where,getDocs} from "https://www.gstatic.com/firebasejs/11.10.0/firebase-firestore.js";
+const msg=document.getElementById("dashMsg");
+watchAuth(async user=>{
+ if(!user){location.href="login.html";return}
+ msg.innerHTML=`<p>Signed in as <b>${user.email}</b></p><button id="verifyBtn" class="secondary">Resend verification email</button> <button id="logout" class="primary">Sign out</button>`;
+ verified.textContent=user.emailVerified?"Verified":"Not verified";
+ document.getElementById("verifyBtn").onclick=async()=>{try{await resendVerification();msg.innerHTML+="<div class='notice success'>Verification email sent.</div>"}catch(e){msg.innerHTML+="<div class='notice error'>"+e.message+"</div>"}};
+ document.getElementById("logout").onclick=async()=>{await logoutUser();location.href="index.html"};
+ if(!configured)return;
+ try{const snap=await getDocs(query(collection(db,"listings"),where("uid","==",user.uid)));count.textContent=snap.size;myListings.innerHTML=snap.docs.map(d=>{const x={id:d.id,...d.data()};return `<a class="card" href="listing.html?id=${d.id}"><div class="card-img">${x.imageUrl?`<img src="${x.imageUrl}">`:"Listing"}</div><div class="card-body"><div class="card-title">${x.title}</div><div class="meta">${x.state} • ${x.status}</div></div></a>`}).join("")||"<div class='empty'>No listings yet.</div>"}catch(e){msg.innerHTML+=`<div class="notice error">${e.message}</div>`}
+});
+</script></body></html>

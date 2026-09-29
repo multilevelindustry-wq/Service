@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<meta
+    name="description"
+    content="Browse jobs, services, property and items by state on ZONGO Connect."
+>
+
+<title>All States | ZONGO Connect</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+
+/* =========================================================
+   STATES PAGE
+========================================================= */
+
+.states-page{
+    max-width:1200px;
+    margin:0 auto;
+    padding:25px 15px 50px;
+}
+
+.states-intro{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.states-intro h1{
+    margin:0 0 8px;
+    font-size:30px;
+}
+
+.states-intro p{
+    margin:0;
+    color:#666;
+    font-size:15px;
+}
+
+
+/* =========================================================
+   STATE GRID
+========================================================= */
+
+.state-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.state-card{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    min-height:72px;
+    padding:14px;
+
+    background:#fff;
+    border:1px solid #e4e4e4;
+    border-radius:10px;
+
+    color:#111;
+    text-decoration:none;
+
+    box-shadow:0 2px 7px rgba(0,0,0,.05);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        border-color .2s ease;
+}
+
+.state-card:hover{
+    transform:translateY(-3px);
+    border-color:#ff9f00;
+    box-shadow:0 6px 15px rgba(0,0,0,.1);
+}
+
+
+/* STATE ICON */
+
+.state-icon{
+    width:44px;
+    height:44px;
+
+    flex:0 0 44px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f5f5f5;
+
+    font-size:22px;
+}
+
+
+/* STATE NAME */
+
+.state-info{
+    min-width:0;
+}
+
+.state-name{
+    display:block;
+
+    font-size:16px;
+    font-weight:700;
+
+    margin-bottom:4px;
+}
+
+.state-info small{
+    display:block;
+
+    color:#777;
+    font-size:12px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:900px){
+
+    .state-grid{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+}
+
+
+@media(max-width:650px){
+
+    .state-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .state-card{
+        padding:11px;
+    }
+
+}
+
+
+@media(max-width:380px){
+
+    .state-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<nav class="site-nav">
+
+    <button
+        class="menu-btn"
+        onclick="toggleMenu()"
+    >
+        ☰
+    </button>
+
+    <a
+        class="brand"
+        href="index.html"
+    >
+        ZONGO
+    </a>
+
+<a
+    class="nav-upload-btn"
+    href="upload.html"
+>
+    ＋ Upload
+</a>
+
+    <div class="nav-search">
+
+        <input
+            id="globalSearch"
+            type="search"
+            placeholder="Search jobs, services or property..."
+        >
+
+        <button
+            onclick="runSearch()"
+        >
+            🔍
+        </button>
+
+    </div>
+
+
+    <a
+        class="nav-link"
+        href="jobs.html"
+    >
+        Jobs
+    </a>
+
+    <a
+        class="nav-link"
+        href="services.html"
+    >
+        Services
+    </a>
+
+    <a
+        class="nav-link"
+        href="sale.html"
+    >
+        For Sale
+    </a>
+
+    <a
+        class="nav-link"
+        href="login.html"
+    >
+        👤 Sign in
+    </a>
+
+</nav>
+
+
+<!-- =========================================================
+     MOBILE MENU
+========================================================= -->
+
+<div
+    id="mobileMenu"
+    style="
+        display:none;
+        padding:15px;
+        background:#fff;
+        border-bottom:1px solid #ddd;
+    "
+>
+
+    <a href="jobs.html">Jobs</a><br><br>
+
+    <a href="services.html">Services</a><br><br>
+
+    <a href="sale.html">For Sale</a><br><br>
+
+    <a href="upload.html">Upload Listing</a><br><br>
+
+    <a href="dashboard.html">Dashboard</a>
+
+</div>
+
+
+<!-- =========================================================
+     PAGE
+========================================================= -->
+
+<main class="states-page">
+
+
+    <div class="states-intro">
+
+        <h1>Browse by State</h1>
+
+        <p>
+            Find jobs, services, property and items available
+            in your state.
+        </p>
+
+    </div>
+
+
+    <!-- =====================================================
+         36 STATES
+    ====================================================== -->
+
+    <div class="state-grid">
+
+
+        <!-- 1 -->
+
+        <a href="abia.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Abia
+                </span>
+
+                <small>
+                    Browse listings in Abia
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 2 -->
+
+        <a href="adamawa.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Adamawa
+                </span>
+
+                <small>
+                    Browse listings in Adamawa
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 3 -->
+
+        <a href="akwa-ibom.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Akwa Ibom
+                </span>
+
+                <small>
+                    Browse listings in Akwa Ibom
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 4 -->
+
+        <a href="anambra.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Anambra
+                </span>
+
+                <small>
+                    Browse listings in Anambra
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 5 -->
+
+        <a href="bauchi.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Bauchi
+                </span>
+
+                <small>
+                    Browse listings in Bauchi
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 6 -->
+
+        <a href="bayelsa.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Bayelsa
+                </span>
+
+                <small>
+                    Browse listings in Bayelsa
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 7 -->
+
+        <a href="benue.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Benue
+                </span>
+
+                <small>
+                    Browse listings in Benue
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 8 -->
+
+        <a href="borno.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Borno
+                </span>
+
+                <small>
+                    Browse listings in Borno
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 9 -->
+
+        <a href="cross-river.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Cross River
+                </span>
+
+                <small>
+                    Browse listings in Cross River
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 10 -->
+
+        <a href="delta.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Delta
+                </span>
+
+                <small>
+                    Browse listings in Delta
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 11 -->
+
+        <a href="ebonyi.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Ebonyi
+                </span>
+
+                <small>
+                    Browse listings in Ebonyi
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 12 -->
+
+        <a href="edo.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Edo
+                </span>
+
+                <small>
+                    Browse listings in Edo
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 13 -->
+
+        <a href="ekiti.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Ekiti
+                </span>
+
+                <small>
+                    Browse listings in Ekiti
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 14 -->
+
+        <a href="enugu.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Enugu
+                </span>
+
+                <small>
+                    Browse listings in Enugu
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 15 -->
+
+        <a href="gombe.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Gombe
+                </span>
+
+                <small>
+                    Browse listings in Gombe
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 16 -->
+
+        <a href="imo.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Imo
+                </span>
+
+                <small>
+                    Browse listings in Imo
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 17 -->
+
+        <a href="jigawa.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Jigawa
+                </span>
+
+                <small>
+                    Browse listings in Jigawa
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 18 -->
+
+        <a href="kaduna.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Kaduna
+                </span>
+
+                <small>
+                    Browse listings in Kaduna
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 19 -->
+
+        <a href="kano.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Kano
+                </span>
+
+                <small>
+                    Browse listings in Kano
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 20 -->
+
+        <a href="katsina.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Katsina
+                </span>
+
+                <small>
+                    Browse listings in Katsina
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 21 -->
+
+        <a href="kebbi.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Kebbi
+                </span>
+
+                <small>
+                    Browse listings in Kebbi
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 22 -->
+
+        <a href="kogi.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Kogi
+                </span>
+
+                <small>
+                    Browse listings in Kogi
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 23 -->
+
+        <a href="kwara.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Kwara
+                </span>
+
+                <small>
+                    Browse listings in Kwara
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 24 -->
+
+        <a href="lagos.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Lagos
+                </span>
+
+                <small>
+                    Browse listings in Lagos
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 25 -->
+
+        <a href="nasarawa.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Nasarawa
+                </span>
+
+                <small>
+                    Browse listings in Nasarawa
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 26 -->
+
+        <a href="niger.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Niger
+                </span>
+
+                <small>
+                    Browse listings in Niger
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 27 -->
+
+        <a href="ogun.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Ogun
+                </span>
+
+                <small>
+                    Browse listings in Ogun
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 28 -->
+
+        <a href="ondo.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Ondo
+                </span>
+
+                <small>
+                    Browse listings in Ondo
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 29 -->
+
+        <a href="osun.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Osun
+                </span>
+
+                <small>
+                    Browse listings in Osun
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 30 -->
+
+        <a href="oyo.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Oyo
+                </span>
+
+                <small>
+                    Browse listings in Oyo
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 31 -->
+
+        <a href="plateau.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Plateau
+                </span>
+
+                <small>
+                    Browse listings in Plateau
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 32 -->
+
+        <a href="rivers.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Rivers
+                </span>
+
+                <small>
+                    Browse listings in Rivers
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 33 -->
+
+        <a href="sokoto.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Sokoto
+                </span>
+
+                <small>
+                    Browse listings in Sokoto
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 34 -->
+
+        <a href="taraba.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Taraba
+                </span>
+
+                <small>
+                    Browse listings in Taraba
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 35 -->
+
+        <a href="yobe.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Yobe
+                </span>
+
+                <small>
+                    Browse listings in Yobe
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- 36 -->
+
+        <a href="zamfara.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    Zamfara
+                </span>
+
+                <small>
+                    Browse listings in Zamfara
+                </small>
+
+            </div>
+
+        </a>
+
+
+        <!-- FCT -->
+
+        <a href="abuja.html" class="state-card">
+
+            <div class="state-icon">📍</div>
+
+            <div class="state-info">
+
+                <span class="state-name">
+                    FCT Abuja
+                </span>
+
+                <small>
+                    Browse listings in Abuja
+                </small>
+
+            </div>
+
+        </a>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-grid">
+
+        <div>
+            <h3>ZONGO</h3>
+            <p>
+                Find jobs, services, property and items
+                across Nigeria.
+            </p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+
+            <a href="jobs.html">Jobs</a>
+
+            <a href="services.html">Services</a>
+
+            <a href="sale.html">For Sale</a>
+
+            <a href="states.html">All States</a>
+        </div>
+
+        <div>
+            <h3>Account</h3>
+
+            <a href="register.html">Register</a>
+
+            <a href="login.html">Login</a>
+
+            <a href="dashboard.html">Dashboard</a>
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+function toggleMenu(){
+
+    const menu =
+        document.getElementById("mobileMenu");
+
+    menu.style.display =
+        menu.style.display === "none"
+        ? "block"
+        : "none";
+
+}
+
+
+/* =========================================================
+   SEARCH
+========================================================= */
+
+function runSearch(){
+
+    const input =
+        document.getElementById("globalSearch");
+
+    const value =
+        input.value.trim();
+
+    if(!value) return;
+
+    window.location.href =
+        "search.html?q=" +
+        encodeURIComponent(value);
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ff9f00">
+<meta name="description" content="ZONGO Connect — find jobs, local services and property for sale across Nigeria.">
+<link rel="stylesheet" href="styles.css">
+<title>ZONGO Connect</title><title>Sign in — ZONGO Connect</title></head><body>
+    
+<nav class="site-nav">
+  <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  <a class="brand" href="index.html">ZONGO</a>
+  
+  <a
+    class="nav-upload-btn"
+    href="upload.html"
+>
+    ＋ Upload
+</a>
+
+<div class="nav-search"><input id="globalSearch" placeholder="Search jobs, services, property..."><button onclick="runSearch()">🔍</button></div>
+  <a class="nav-link" href="jobs.html">Jobs</a><a class="nav-link" href="services.html">Services</a><a class="nav-link" href="sale.html">For Sale</a>
+  <a class="nav-link account" id="accountLink" href="login.html">👤 Sign in</a>
+</nav>
+<div id="mobileMenu" style="display:none;background:#fff;border-bottom:1px solid #ddd;padding:14px">
+  <a href="jobs.html">Jobs</a> · <a href="services.html">Services</a> · <a href="sale.html">For Sale</a> · <a href="upload.html">Upload Listing</a> · <a href="dashboard.html">Dashboard</a>
+</div>
+<div class="callbar">LIST YOUR JOB • SERVICE • PROPERTY | CONNECT WITH PEOPLE IN YOUR STATE</div><main class="auth-page"><div class="auth-card"><div class="brand">ZONGO</div><h1>Sign in</h1><p>Access your listings and dashboard.</p>
+<form id="loginForm"><div class="field"><label>Email</label><input id="email" type="email" required></div><br><div class="field"><label>Password</label><input id="password" type="password" required></div><br><button class="primary" type="submit">Sign in</button></form><div id="msg" style="margin-top:15px"></div><p>New here? <a href="register.html"><u>Create an account</u></a></p></div></main><footer><div class="footer-grid">
+  <div><h3>ZONGO</h3><p>State-first marketplace for jobs, services, property and useful items across Nigeria.</p></div>
+  <div><h3>Explore</h3><a href="jobs.html">Jobs</a><a href="services.html">Services</a><a href="sale.html">Property & Items</a><a href="upload.html">Upload Listing</a></div>
+  <div><h3>Account</h3><a href="register.html">Register</a><a href="login.html">Sign in</a><a href="dashboard.html">Dashboard</a></div>
+  <div><h3>Locations</h3><a href="lagos.html">Lagos</a><a href="enugu.html">Enugu</a><a href="rivers.html">Rivers</a><a href="abuja.html">FCT / Abuja</a></div>
+</div><p style="margin-top:30px;color:#888">© 2026 ZONGO. Built for Nigeria.</p></footer><script type="module" src="app.js"></script><script type="module">
+import {loginUser} from "./auth.js";
+document.getElementById("loginForm").onsubmit=async e=>{e.preventDefault();try{await loginUser(email.value,password.value);location.href="dashboard.html"}catch(err){msg.className="notice error";msg.textContent=err.message}};
+</script></body></html>
