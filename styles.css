@@ -45,6 +45,281 @@ footer{background:#111;color:#fff;margin-top:40px;padding:35px 5%}.footer-grid{d
 }
 @media(min-width:801px){.mobile-menu{display:none}}
 
+/* =========================================================
+   MEDIA URL HELP MODAL
+========================================================= */
+
+.media-url-modal{
+    position:fixed;
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:18px;
+
+    background:rgba(0,0,0,.65);
+
+    overflow-y:auto;
+}
+
+.media-url-modal-box{
+    position:relative;
+
+    width:100%;
+    max-width:520px;
+
+    max-height:90vh;
+    overflow-y:auto;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:28px 24px 24px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.3);
+
+    animation:mediaModalIn .25s ease;
+}
+
+@keyframes mediaModalIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+
+/* CLOSE BUTTON */
+
+.media-url-close{
+    position:absolute;
+
+    top:10px;
+    right:12px;
+
+    width:40px;
+    height:40px;
+
+    border:0;
+    border-radius:50%;
+
+    background:#f1f1f1;
+
+    color:#222;
+
+    font-size:28px;
+    line-height:1;
+
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.media-url-close:hover{
+    background:#e5e5e5;
+}
+
+
+/* ICON */
+
+.media-url-icon{
+    width:58px;
+    height:58px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    margin:0 auto 12px;
+
+    border-radius:50%;
+
+    background:#fff3d8;
+
+    font-size:28px;
+}
+
+
+/* TITLE */
+
+.media-url-modal-box h2{
+    margin:0 0 8px;
+
+    text-align:center;
+
+    font-size:24px;
+
+    color:#111;
+}
+
+.media-url-intro{
+    margin:0 0 22px;
+
+    text-align:center;
+
+    color:#666;
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+
+
+/* STEPS */
+
+.media-url-step{
+    display:flex;
+
+    gap:13px;
+
+    margin-bottom:15px;
+}
+
+.media-url-step > span{
+    flex:0 0 32px;
+
+    width:32px;
+    height:32px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#ff9f00;
+
+    color:#fff;
+
+    font-weight:800;
+}
+
+.media-url-step strong{
+    display:block;
+
+    margin-bottom:4px;
+
+    font-size:15px;
+}
+
+.media-url-step p{
+    margin:0;
+
+    color:#666;
+
+    font-size:13px;
+
+    line-height:1.45;
+}
+
+
+/* EXAMPLE */
+
+.media-url-example{
+    margin-top:20px;
+
+    padding:13px;
+
+    border-radius:8px;
+
+    background:#f5f5f5;
+
+    font-size:13px;
+
+    overflow:hidden;
+}
+
+.media-url-example code{
+    display:block;
+
+    margin-top:7px;
+
+    color:#555;
+
+    word-break:break-all;
+}
+
+
+/* WARNING */
+
+.media-url-warning{
+    margin-top:12px;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    background:#fff8e8;
+
+    color:#664b00;
+
+    font-size:12px;
+
+    line-height:1.45;
+}
+
+
+/* CONTINUE BUTTON */
+
+.media-url-understand{
+    width:100%;
+
+    margin-top:18px;
+
+    height:48px;
+
+    border:0;
+
+    border-radius:9px;
+
+    background:#ff9f00;
+
+    color:#fff;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+}
+
+.media-url-understand:hover{
+    opacity:.9;
+}
+
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .media-url-modal{
+        padding:12px;
+    }
+
+    .media-url-modal-box{
+        padding:25px 18px 18px;
+        border-radius:13px;
+    }
+
+    .media-url-modal-box h2{
+        font-size:21px;
+    }
+
+     }
 
 /* =========================================================
    ZONGO CONNECT HERO CARDS
