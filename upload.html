@@ -44,7 +44,125 @@
   <div><h3>Explore</h3><a href="jobs.html">Jobs</a><a href="services.html">Services</a><a href="sale.html">Property & Items</a><a href="upload.html">Upload Listing</a></div>
   <div><h3>Account</h3><a href="register.html">Register</a><a href="login.html">Sign in</a><a href="dashboard.html">Dashboard</a></div>
   <div><h3>Locations</h3><a href="lagos.html">Lagos</a><a href="enugu.html">Enugu</a><a href="rivers.html">Rivers</a><a href="abuja.html">FCT / Abuja</a></div>
-</div><p style="margin-top:30px;color:#888">© 2026 ZONGO. Built for Nigeria.</p></footer><script type="module" src="app.js"></script><script type="module">
+</div><p style="margin-top:30px;color:#888">© 2026 ZONGO. Built for Nigeria.</p></footer>
+
+  <!-- =========================================================
+     MEDIA URL HELP MODAL
+========================================================= -->
+
+<div
+    id="mediaUrlModal"
+    class="media-url-modal"
+    aria-hidden="false"
+>
+
+    <div class="media-url-modal-box">
+
+        <button
+            type="button"
+            class="media-url-close"
+            id="closeMediaUrlModal"
+            aria-label="Close"
+        >
+            &times;
+        </button>
+
+
+        <div class="media-url-icon">
+            🔗
+        </div>
+
+
+        <h2>
+            Before You Upload
+        </h2>
+
+
+        <p class="media-url-intro">
+            ZONGO Connect uses <strong>image and video links</strong>
+            for listings.
+        </p>
+
+
+        <div class="media-url-step">
+
+            <span>1</span>
+
+            <div>
+                <strong>Convert your image or video to a URL</strong>
+
+                <p>
+                    Upload your image or video to an image/video
+                    hosting service that gives you a direct link.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="media-url-step">
+
+            <span>2</span>
+
+            <div>
+                <strong>Copy the media link</strong>
+
+                <p>
+                    Copy the URL/link provided after your
+                    image or video has been uploaded.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="media-url-step">
+
+            <span>3</span>
+
+            <div>
+                <strong>Paste the link here</strong>
+
+                <p>
+                    Paste the image or video URL into the
+                    media URL field on this upload page.
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="media-url-example">
+
+            <strong>Example:</strong>
+
+            <code>
+                https://example.com/my-image.jpg
+            </code>
+
+        </div>
+
+
+        <div class="media-url-warning">
+
+            ⚠️ Make sure the link opens the actual image or
+            video. Do not paste a normal webpage link.
+
+        </div>
+
+
+        <button
+            type="button"
+            class="media-url-understand"
+            id="understandMediaUrl"
+        >
+            I Understand — Continue
+        </button>
+
+    </div>
+
+</div>
+  <script type="module" src="app.js"></script><script type="module">
 import { CATEGORIES, STATES } from "./categories.js";
 import { db, configured } from "./firebase.js";
 import { watchAuth } from "./auth.js";
@@ -63,4 +181,81 @@ document.getElementById("uploadForm").onsubmit=async e=>{
  const data={type:type.value,category:cat.value,subcategory:sub.value,title:title.value.trim(),price:price.value.trim(),state:state.value,city:city.value.trim(),address:address.value.trim(),phone:phone.value.trim(),imageUrl:imageUrl.value.trim(),description:description.value.trim(),uid:currentUser.uid,email:currentUser.email,status:"active",createdAt:serverTimestamp()};
  try{const ref=await addDoc(collection(db,"listings"),data);msg.className="notice success";msg.innerHTML=`Published successfully. <a href="listing.html?id=${ref.id}"><u>View listing</u></a>`;e.target.reset();fillCats()}catch(err){msg.className="notice error";msg.textContent=err.message}
 }
+
+    
+/* =========================================================
+   MEDIA URL HELP MODAL
+========================================================= */
+
+const mediaUrlModal =
+    document.getElementById("mediaUrlModal");
+
+const closeMediaUrlModal =
+    document.getElementById("closeMediaUrlModal");
+
+const understandMediaUrl =
+    document.getElementById("understandMediaUrl");
+
+
+function closeMediaHelp(){
+
+    if(!mediaUrlModal) return;
+
+    mediaUrlModal.style.display = "none";
+
+    mediaUrlModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+}
+
+
+/* X BUTTON */
+
+closeMediaUrlModal?.addEventListener(
+    "click",
+    closeMediaHelp
+);
+
+
+/* CONTINUE BUTTON */
+
+understandMediaUrl?.addEventListener(
+    "click",
+    closeMediaHelp
+);
+
+
+/* CLICK OUTSIDE MODAL */
+
+mediaUrlModal?.addEventListener(
+    "click",
+    function(event){
+
+        if(event.target === mediaUrlModal){
+
+            closeMediaHelp();
+
+        }
+
+    }
+);
+
+
+/* ESC KEY */
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+
+            closeMediaHelp();
+
+        }
+
+    }
+);
+
 </script></body></html>
